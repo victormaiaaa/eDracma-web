@@ -1,13 +1,14 @@
+/* eslint-disable no-alert */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { MdOutlineRemoveShoppingCart } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import { Cart, CartTitle, CartVoid, Container, Content } from './styles';
 import { Button, Input, ListProduct } from '../../components';
 import productService from '../../services/productService';
+import { Menu } from '../Login/styles';
 
 const Vendas: React.FC = () => {
-  const history = useHistory();
-  const [fail, setFail] = useState(false);
   const [dataProducts, setDataProducts] = useState<
     {
       name: string;
@@ -16,7 +17,7 @@ const Vendas: React.FC = () => {
     }[]
   >([]);
   const [productInput, setProductInput] = useState('');
-  const [dataCart, setDataCart] = useState<any>([]);
+  const [dataCart] = useState<any>([]);
   const [customer, setCustomer] = useState('');
 
   const getProducts = async () => {
@@ -47,43 +48,49 @@ const Vendas: React.FC = () => {
   }, []);
 
   return (
-    <Container>
-      <Content>
-        <Input
-          placeholder="Cod. de barras"
-          label="Produto"
-          value={productInput}
-          onChange={e => setProductInput(e.target.value)}
-          onKeyUp={(e: any) => {
-            if (e.key === 'Enter') setProductInCart();
-          }}
-        />
-        {dataCart.length > 0 ? (
-          <Cart>
-            <CartTitle>
-              <b>Descrição:</b>
-              <b>valor:</b>
-            </CartTitle>
-            {dataCart.map((e: any) => {
-              return <ListProduct name={e.name} price={e.price} />;
-            })}
-          </Cart>
-        ) : (
-          <CartVoid>
-            <b>Carrinho Vazio</b>
-          </CartVoid>
-        )}
-        <Input
-          placeholder="Nº do cartão"
-          label="Aluno"
-          value={customer}
-          onChange={e => setCustomer(e.target.value)}
-        />
-        <Button type="submit" onClick={sell}>
-          Vender
-        </Button>
-      </Content>
-    </Container>
+    <>
+      <Menu>
+        <Link to="/pontos">Pontos</Link>
+      </Menu>
+      <Container>
+        <Content>
+          <Input
+            placeholder="Cod. de barras"
+            label="Produto"
+            value={productInput}
+            onChange={e => setProductInput(e.target.value)}
+            onKeyUp={(e: any) => {
+              if (e.key === 'Enter') setProductInCart();
+            }}
+          />
+          {dataCart.length > 0 ? (
+            <Cart>
+              <CartTitle>
+                <b>Descrição:</b>
+                <b>valor:</b>
+              </CartTitle>
+              {dataCart.map((e: any) => {
+                return <ListProduct name={e.name} price={e.price} />;
+              })}
+            </Cart>
+          ) : (
+            <CartVoid>
+              <MdOutlineRemoveShoppingCart />
+              <b>Carrinho Vazio</b>
+            </CartVoid>
+          )}
+          <Input
+            placeholder="Nº do cartão"
+            label="Aluno"
+            value={customer}
+            onChange={e => setCustomer(e.target.value)}
+          />
+          <Button type="submit" onClick={sell}>
+            Vender
+          </Button>
+        </Content>
+      </Container>
+    </>
   );
 };
 

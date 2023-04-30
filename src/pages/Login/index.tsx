@@ -2,16 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import { BsEyeSlashFill } from 'react-icons/bs';
 import { IoEyeSharp } from 'react-icons/io5';
-import { useHistory } from 'react-router-dom';
-import { Container, Content } from './styles';
-import { Button, Input, ModalDefault } from '../../components';
+import { Link, useHistory } from 'react-router-dom';
+import { Container, Content, Menu } from './styles';
+import { Button, Input } from '../../components';
 import { usePageContext } from '../../hooks';
 import authService from '../../services/authService';
 import api from '../../services/api';
 
 const Login: React.FC = () => {
   const history = useHistory();
-  const [fail, setFail] = useState(false);
+  const [, setFail] = useState(false);
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [visiblePassword, setVisiblePassword] = useState(false);

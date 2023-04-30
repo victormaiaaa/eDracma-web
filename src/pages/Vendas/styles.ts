@@ -83,6 +83,15 @@ export const Title = styled.span`
 
 export const CartVoid = styled.div`
   margin: 60px 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  svg {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Cart = styled.div`

@@ -85,3 +85,22 @@ export const A = styled.a`
   margin-top: 10px;
   cursor: pointer;
 `;
+
+export const Menu = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  align-items: center;
+  padding: 5px;
+
+  a {
+    color: #323232;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+  }
+`;
